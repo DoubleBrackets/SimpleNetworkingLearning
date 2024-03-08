@@ -16,7 +16,7 @@ namespace NetworkTesting
 
         private const int Port = 7770;
 
-        public string targetIpv4Addr { get; set; }
+        public string targetIpAddr { get; set; }
 
         private CancellationTokenSource cancelTokenSource;
 
@@ -60,17 +60,17 @@ namespace NetworkTesting
                 // for the socket. This example 
                 // uses port 11111 on the local 
                 // computer.
-                IPHostEntry ipHost = Dns.GetHostEntry(Dns.GetHostName());
-                IPAddress ipAddr = ipHost.AddressList[0];
+                IPAddress ipAddr = NetworkUtils.GetLoopbbackAddress().Address;
 
-                if(targetIpv4Addr != String.Empty)
+
+                if (targetIpAddr != null && targetIpAddr != String.Empty)
                 {
-                    ipAddr = IPAddress.Parse(targetIpv4Addr);
+                    ipAddr = IPAddress.Parse(targetIpAddr);
                 }
 
                 IPEndPoint localEndPoint = new IPEndPoint(ipAddr, Port);
 
-                progress.Report($"Trying to connect to -> \n{ipAddr.MapToIPv4()}\n{ipAddr}\non port {localEndPoint.Port}");
+                progress.Report($"Trying to connect to -> \n{ipAddr}\non port {localEndPoint.Port}");
 
                 // Creation TCP/IP Socket using 
                 // Socket Class Constructor
@@ -155,21 +155,22 @@ namespace NetworkTesting
             progress.Report("Starting Server");
 
             // Establish the local endpoint 
-            // for the socket. Dns.GetHostName
-            // returns the name of the host 
-            // running the application.
-            IPHostEntry ipHost = Dns.GetHostEntry(Dns.GetHostName());
-            IPAddress ipAddr = ipHost.AddressList[0];
+            // for the socket.
+            IPAddress ipAddr = NetworkUtils.GetHostAssociatedAddress();
+
             IPEndPoint localEndPoint = new IPEndPoint(ipAddr, Port);
 
-            
 
             // Creation TCP/IP Socket using 
             // Socket Class Constructor
             Socket listener = new Socket(ipAddr.AddressFamily,
                          SocketType.Stream, ProtocolType.Tcp);
 
-            progress.Report($"Binding to ip \n{ipAddr}\n{ipAddr.MapToIPv4()}\non port {localEndPoint.Port}");
+            // Allow both ipv4 and ipv6 connections
+            listener.SetSocketOption(SocketOptionLevel.IPv6, SocketOptionName.IPv6Only, false);
+
+            progress.Report($"Binding to ip \n{ipAddr}\non port {localEndPoint.Port}");
+
 
             try
             {
@@ -189,7 +190,7 @@ namespace NetworkTesting
                 while (true)
                 {
 
-                    progress.Report("Waiting connection ... ");
+                    progress.Report("Waiting for connection to send data... ");
 
                     // Suspend while waiting for
                     // incoming connection Using 

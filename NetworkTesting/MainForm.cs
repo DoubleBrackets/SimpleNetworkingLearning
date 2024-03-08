@@ -43,14 +43,12 @@ namespace NetworkTesting
 
         private void IPAddress_TextBox_TextChanged(object sender, EventArgs e)
         {
-            basicConnectionControl.targetIpv4Addr = IPAddress_TextBox.Text;
+            basicConnectionControl.targetIpAddr = IPAddress_TextBox.Text;
         }
 
         private void ShowIpInfo_Button_Click(object sender, EventArgs e)
         {
-            NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
-
-            foreach (NetworkInterface network in networkInterfaces)
+            foreach (NetworkInterface network in NetworkUtils.GetNetworkInterfaces())
             {
                 // Read the IP configuration for each network 
                 IPInterfaceProperties properties = network.GetIPProperties();
@@ -60,7 +58,7 @@ namespace NetworkTesting
                 {
                     outputControl.WriteToConsole(address.Address.ToString() + " (" + network.Name + ")");
                 }
-            }
+            }  
         }
     }
 }

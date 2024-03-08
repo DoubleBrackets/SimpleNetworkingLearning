@@ -39,6 +39,7 @@
             this.Vertical_SplitContainer = new System.Windows.Forms.SplitContainer();
             this.Console_TextBox = new System.Windows.Forms.RichTextBox();
             this.ShowIpInfo_Button = new System.Windows.Forms.Button();
+            this.IPField_Label = new System.Windows.Forms.Label();
             this.SystemSelection_TabControl.SuspendLayout();
             this.BasicConnect_TabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BottomHorizontal_SplitContainer)).BeginInit();
@@ -97,6 +98,7 @@
             // BasicConnect_TabPage
             // 
             this.BasicConnect_TabPage.BackColor = System.Drawing.Color.White;
+            this.BasicConnect_TabPage.Controls.Add(this.IPField_Label);
             this.BasicConnect_TabPage.Controls.Add(this.IPAddress_TextBox);
             this.BasicConnect_TabPage.Controls.Add(this.Connect_Button);
             this.BasicConnect_TabPage.Controls.Add(this.StartServer_Button);
@@ -113,7 +115,6 @@
             this.IPAddress_TextBox.Name = "IPAddress_TextBox";
             this.IPAddress_TextBox.Size = new System.Drawing.Size(265, 26);
             this.IPAddress_TextBox.TabIndex = 2;
-            this.IPAddress_TextBox.Text = "IP Address...";
             this.IPAddress_TextBox.TextChanged += new System.EventHandler(this.IPAddress_TextBox_TextChanged);
             // 
             // NATHolePunch_TabPage
@@ -195,6 +196,15 @@
             this.ShowIpInfo_Button.UseVisualStyleBackColor = true;
             this.ShowIpInfo_Button.Click += new System.EventHandler(this.ShowIpInfo_Button_Click);
             // 
+            // IPField_Label
+            // 
+            this.IPField_Label.AutoSize = true;
+            this.IPField_Label.Location = new System.Drawing.Point(362, 9);
+            this.IPField_Label.Name = "IPField_Label";
+            this.IPField_Label.Size = new System.Drawing.Size(24, 20);
+            this.IPField_Label.TabIndex = 3;
+            this.IPField_Label.Text = "IP";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -232,6 +242,7 @@
         private System.Windows.Forms.RichTextBox Console_TextBox;
         private System.Windows.Forms.TextBox IPAddress_TextBox;
         private System.Windows.Forms.Button ShowIpInfo_Button;
+        private System.Windows.Forms.Label IPField_Label;
     }
 }
 
