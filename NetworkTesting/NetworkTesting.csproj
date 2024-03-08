@@ -46,13 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicTCPConnectionControl.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BasicConnectionControl.cs" />
+    <Compile Include="BasicUDPConnectionControl.cs" />
     <Compile Include="NetworkUtils.cs" />
     <Compile Include="OutputControl.cs" />
     <Compile Include="Program.cs" />

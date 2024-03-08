@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace NetworkTesting
 {
-    internal class BasicConnectionControl
+    internal class BasicTCPConnectionControl
     {
         private OutputControl outputControl;
 
@@ -31,7 +31,7 @@ namespace NetworkTesting
 
         public State state { get; set; }
 
-        public BasicConnectionControl(OutputControl outputControl)
+        public BasicTCPConnectionControl(OutputControl outputControl)
         {        
             this.outputControl = outputControl;
             cancelTokenSource = new CancellationTokenSource();
@@ -151,7 +151,7 @@ namespace NetworkTesting
                 while (true)
                 {
 
-                    progress.Report("Waiting for connection to send data... ");
+                    progress.Report("Waiting for client to connect... ");
 
                     // Suspend while waiting for incoming connection
                     Socket clientSocket = listener.Accept();

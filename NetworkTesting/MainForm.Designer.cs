@@ -28,20 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Connect_Button = new System.Windows.Forms.Button();
-            this.StartServer_Button = new System.Windows.Forms.Button();
+            this.BasicTCPConnect_Button = new System.Windows.Forms.Button();
+            this.BasicTCPStartServer_Button = new System.Windows.Forms.Button();
             this.StartInstance_Button = new System.Windows.Forms.Button();
             this.SystemSelection_TabControl = new System.Windows.Forms.TabControl();
             this.BasicConnect_TabPage = new System.Windows.Forms.TabPage();
-            this.IPAddress_TextBox = new System.Windows.Forms.TextBox();
+            this.IPField_Label = new System.Windows.Forms.Label();
+            this.BasicTCPIPAddress_TextBox = new System.Windows.Forms.TextBox();
+            this.BasicUDP_TabPage = new System.Windows.Forms.TabPage();
             this.NATHolePunch_TabPage = new System.Windows.Forms.TabPage();
             this.BottomHorizontal_SplitContainer = new System.Windows.Forms.SplitContainer();
+            this.ShowIpInfo_Button = new System.Windows.Forms.Button();
             this.Vertical_SplitContainer = new System.Windows.Forms.SplitContainer();
             this.Console_TextBox = new System.Windows.Forms.RichTextBox();
-            this.ShowIpInfo_Button = new System.Windows.Forms.Button();
-            this.IPField_Label = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.BasicUDPIP_Textbox = new System.Windows.Forms.TextBox();
+            this.BasicUDPConnect_Button = new System.Windows.Forms.Button();
+            this.BasicUDPStartListening_Button = new System.Windows.Forms.Button();
             this.SystemSelection_TabControl.SuspendLayout();
             this.BasicConnect_TabPage.SuspendLayout();
+            this.BasicUDP_TabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BottomHorizontal_SplitContainer)).BeginInit();
             this.BottomHorizontal_SplitContainer.Panel1.SuspendLayout();
             this.BottomHorizontal_SplitContainer.Panel2.SuspendLayout();
@@ -52,25 +58,25 @@
             this.Vertical_SplitContainer.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Connect_Button
+            // BasicTCPConnect_Button
             // 
-            this.Connect_Button.Location = new System.Drawing.Point(6, 6);
-            this.Connect_Button.Name = "Connect_Button";
-            this.Connect_Button.Size = new System.Drawing.Size(133, 66);
-            this.Connect_Button.TabIndex = 0;
-            this.Connect_Button.Text = "Connect as client";
-            this.Connect_Button.UseVisualStyleBackColor = true;
-            this.Connect_Button.Click += new System.EventHandler(this.Connect_Button_Click);
+            this.BasicTCPConnect_Button.Location = new System.Drawing.Point(6, 6);
+            this.BasicTCPConnect_Button.Name = "BasicTCPConnect_Button";
+            this.BasicTCPConnect_Button.Size = new System.Drawing.Size(133, 66);
+            this.BasicTCPConnect_Button.TabIndex = 0;
+            this.BasicTCPConnect_Button.Text = "Connect as client";
+            this.BasicTCPConnect_Button.UseVisualStyleBackColor = true;
+            this.BasicTCPConnect_Button.Click += new System.EventHandler(this.BasicTCPConnect_Button_Click);
             // 
-            // StartServer_Button
+            // BasicTCPStartServer_Button
             // 
-            this.StartServer_Button.Location = new System.Drawing.Point(145, 6);
-            this.StartServer_Button.Name = "StartServer_Button";
-            this.StartServer_Button.Size = new System.Drawing.Size(140, 66);
-            this.StartServer_Button.TabIndex = 1;
-            this.StartServer_Button.Text = "Start Server";
-            this.StartServer_Button.UseVisualStyleBackColor = true;
-            this.StartServer_Button.Click += new System.EventHandler(this.StartServer_Button_Click);
+            this.BasicTCPStartServer_Button.Location = new System.Drawing.Point(145, 6);
+            this.BasicTCPStartServer_Button.Name = "BasicTCPStartServer_Button";
+            this.BasicTCPStartServer_Button.Size = new System.Drawing.Size(140, 66);
+            this.BasicTCPStartServer_Button.TabIndex = 1;
+            this.BasicTCPStartServer_Button.Text = "Start Server";
+            this.BasicTCPStartServer_Button.UseVisualStyleBackColor = true;
+            this.BasicTCPStartServer_Button.Click += new System.EventHandler(this.BasicTCPStartServer_Button_Click);
             // 
             // StartInstance_Button
             // 
@@ -87,42 +93,66 @@
             // SystemSelection_TabControl
             // 
             this.SystemSelection_TabControl.Controls.Add(this.BasicConnect_TabPage);
+            this.SystemSelection_TabControl.Controls.Add(this.BasicUDP_TabPage);
             this.SystemSelection_TabControl.Controls.Add(this.NATHolePunch_TabPage);
             this.SystemSelection_TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SystemSelection_TabControl.Location = new System.Drawing.Point(10, 10);
             this.SystemSelection_TabControl.Name = "SystemSelection_TabControl";
             this.SystemSelection_TabControl.SelectedIndex = 0;
-            this.SystemSelection_TabControl.Size = new System.Drawing.Size(671, 187);
+            this.SystemSelection_TabControl.Size = new System.Drawing.Size(675, 187);
             this.SystemSelection_TabControl.TabIndex = 4;
             // 
             // BasicConnect_TabPage
             // 
             this.BasicConnect_TabPage.BackColor = System.Drawing.Color.White;
             this.BasicConnect_TabPage.Controls.Add(this.IPField_Label);
-            this.BasicConnect_TabPage.Controls.Add(this.IPAddress_TextBox);
-            this.BasicConnect_TabPage.Controls.Add(this.Connect_Button);
-            this.BasicConnect_TabPage.Controls.Add(this.StartServer_Button);
+            this.BasicConnect_TabPage.Controls.Add(this.BasicTCPIPAddress_TextBox);
+            this.BasicConnect_TabPage.Controls.Add(this.BasicTCPConnect_Button);
+            this.BasicConnect_TabPage.Controls.Add(this.BasicTCPStartServer_Button);
             this.BasicConnect_TabPage.Location = new System.Drawing.Point(4, 29);
             this.BasicConnect_TabPage.Name = "BasicConnect_TabPage";
             this.BasicConnect_TabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.BasicConnect_TabPage.Size = new System.Drawing.Size(663, 154);
+            this.BasicConnect_TabPage.Size = new System.Drawing.Size(667, 154);
             this.BasicConnect_TabPage.TabIndex = 0;
-            this.BasicConnect_TabPage.Text = "Basic Connect";
+            this.BasicConnect_TabPage.Text = "Basic TCP";
             // 
-            // IPAddress_TextBox
+            // IPField_Label
             // 
-            this.IPAddress_TextBox.Location = new System.Drawing.Point(392, 6);
-            this.IPAddress_TextBox.Name = "IPAddress_TextBox";
-            this.IPAddress_TextBox.Size = new System.Drawing.Size(265, 26);
-            this.IPAddress_TextBox.TabIndex = 2;
-            this.IPAddress_TextBox.TextChanged += new System.EventHandler(this.IPAddress_TextBox_TextChanged);
+            this.IPField_Label.AutoSize = true;
+            this.IPField_Label.Location = new System.Drawing.Point(362, 9);
+            this.IPField_Label.Name = "IPField_Label";
+            this.IPField_Label.Size = new System.Drawing.Size(24, 20);
+            this.IPField_Label.TabIndex = 3;
+            this.IPField_Label.Text = "IP";
+            // 
+            // BasicTCPIPAddress_TextBox
+            // 
+            this.BasicTCPIPAddress_TextBox.Location = new System.Drawing.Point(392, 6);
+            this.BasicTCPIPAddress_TextBox.Name = "BasicTCPIPAddress_TextBox";
+            this.BasicTCPIPAddress_TextBox.Size = new System.Drawing.Size(265, 26);
+            this.BasicTCPIPAddress_TextBox.TabIndex = 2;
+            this.BasicTCPIPAddress_TextBox.TextChanged += new System.EventHandler(this.IPAddress_TextBox_TextChanged);
+            // 
+            // BasicUDP_TabPage
+            // 
+            this.BasicUDP_TabPage.Controls.Add(this.label1);
+            this.BasicUDP_TabPage.Controls.Add(this.BasicUDPIP_Textbox);
+            this.BasicUDP_TabPage.Controls.Add(this.BasicUDPConnect_Button);
+            this.BasicUDP_TabPage.Controls.Add(this.BasicUDPStartListening_Button);
+            this.BasicUDP_TabPage.Location = new System.Drawing.Point(4, 29);
+            this.BasicUDP_TabPage.Name = "BasicUDP_TabPage";
+            this.BasicUDP_TabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.BasicUDP_TabPage.Size = new System.Drawing.Size(667, 154);
+            this.BasicUDP_TabPage.TabIndex = 2;
+            this.BasicUDP_TabPage.Text = "Basic UDP";
+            this.BasicUDP_TabPage.UseVisualStyleBackColor = true;
             // 
             // NATHolePunch_TabPage
             // 
             this.NATHolePunch_TabPage.Location = new System.Drawing.Point(4, 29);
             this.NATHolePunch_TabPage.Name = "NATHolePunch_TabPage";
             this.NATHolePunch_TabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.NATHolePunch_TabPage.Size = new System.Drawing.Size(663, 154);
+            this.NATHolePunch_TabPage.Size = new System.Drawing.Size(667, 154);
             this.NATHolePunch_TabPage.TabIndex = 1;
             this.NATHolePunch_TabPage.Text = "NatHolePunch";
             this.NATHolePunch_TabPage.UseVisualStyleBackColor = true;
@@ -146,9 +176,21 @@
             this.BottomHorizontal_SplitContainer.Panel2.Controls.Add(this.StartInstance_Button);
             this.BottomHorizontal_SplitContainer.Panel2.Padding = new System.Windows.Forms.Padding(10);
             this.BottomHorizontal_SplitContainer.Size = new System.Drawing.Size(873, 207);
-            this.BottomHorizontal_SplitContainer.SplitterDistance = 691;
+            this.BottomHorizontal_SplitContainer.SplitterDistance = 695;
             this.BottomHorizontal_SplitContainer.SplitterWidth = 5;
             this.BottomHorizontal_SplitContainer.TabIndex = 1;
+            // 
+            // ShowIpInfo_Button
+            // 
+            this.ShowIpInfo_Button.AutoSize = true;
+            this.ShowIpInfo_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ShowIpInfo_Button.Location = new System.Drawing.Point(9, 46);
+            this.ShowIpInfo_Button.Name = "ShowIpInfo_Button";
+            this.ShowIpInfo_Button.Size = new System.Drawing.Size(110, 30);
+            this.ShowIpInfo_Button.TabIndex = 4;
+            this.ShowIpInfo_Button.Text = "Show IP Info";
+            this.ShowIpInfo_Button.UseVisualStyleBackColor = true;
+            this.ShowIpInfo_Button.Click += new System.EventHandler(this.ShowIpInfo_Button_Click);
             // 
             // Vertical_SplitContainer
             // 
@@ -184,26 +226,42 @@
             this.Console_TextBox.TabIndex = 2;
             this.Console_TextBox.Text = "Test\n";
             // 
-            // ShowIpInfo_Button
+            // label1
             // 
-            this.ShowIpInfo_Button.AutoSize = true;
-            this.ShowIpInfo_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ShowIpInfo_Button.Location = new System.Drawing.Point(9, 46);
-            this.ShowIpInfo_Button.Name = "ShowIpInfo_Button";
-            this.ShowIpInfo_Button.Size = new System.Drawing.Size(110, 30);
-            this.ShowIpInfo_Button.TabIndex = 4;
-            this.ShowIpInfo_Button.Text = "Show IP Info";
-            this.ShowIpInfo_Button.UseVisualStyleBackColor = true;
-            this.ShowIpInfo_Button.Click += new System.EventHandler(this.ShowIpInfo_Button_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(362, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(24, 20);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "IP";
             // 
-            // IPField_Label
+            // BasicUDPIP_Textbox
             // 
-            this.IPField_Label.AutoSize = true;
-            this.IPField_Label.Location = new System.Drawing.Point(362, 9);
-            this.IPField_Label.Name = "IPField_Label";
-            this.IPField_Label.Size = new System.Drawing.Size(24, 20);
-            this.IPField_Label.TabIndex = 3;
-            this.IPField_Label.Text = "IP";
+            this.BasicUDPIP_Textbox.Location = new System.Drawing.Point(392, 7);
+            this.BasicUDPIP_Textbox.Name = "BasicUDPIP_Textbox";
+            this.BasicUDPIP_Textbox.Size = new System.Drawing.Size(265, 26);
+            this.BasicUDPIP_Textbox.TabIndex = 6;
+            this.BasicUDPIP_Textbox.TextChanged += new System.EventHandler(this.BasicUDPIP_Textbox_TextChanged);
+            // 
+            // BasicUDPConnect_Button
+            // 
+            this.BasicUDPConnect_Button.Location = new System.Drawing.Point(6, 7);
+            this.BasicUDPConnect_Button.Name = "BasicUDPConnect_Button";
+            this.BasicUDPConnect_Button.Size = new System.Drawing.Size(133, 66);
+            this.BasicUDPConnect_Button.TabIndex = 4;
+            this.BasicUDPConnect_Button.Text = "Send Packets";
+            this.BasicUDPConnect_Button.UseVisualStyleBackColor = true;
+            this.BasicUDPConnect_Button.Click += new System.EventHandler(this.BasicUDPConnect_Button_Click);
+            // 
+            // BasicUDPStartListening_Button
+            // 
+            this.BasicUDPStartListening_Button.Location = new System.Drawing.Point(145, 7);
+            this.BasicUDPStartListening_Button.Name = "BasicUDPStartListening_Button";
+            this.BasicUDPStartListening_Button.Size = new System.Drawing.Size(140, 66);
+            this.BasicUDPStartListening_Button.TabIndex = 5;
+            this.BasicUDPStartListening_Button.Text = "Start Listening";
+            this.BasicUDPStartListening_Button.UseVisualStyleBackColor = true;
+            this.BasicUDPStartListening_Button.Click += new System.EventHandler(this.BasicUDPStartListening_Button_Click);
             // 
             // MainForm
             // 
@@ -216,6 +274,8 @@
             this.SystemSelection_TabControl.ResumeLayout(false);
             this.BasicConnect_TabPage.ResumeLayout(false);
             this.BasicConnect_TabPage.PerformLayout();
+            this.BasicUDP_TabPage.ResumeLayout(false);
+            this.BasicUDP_TabPage.PerformLayout();
             this.BottomHorizontal_SplitContainer.Panel1.ResumeLayout(false);
             this.BottomHorizontal_SplitContainer.Panel2.ResumeLayout(false);
             this.BottomHorizontal_SplitContainer.Panel2.PerformLayout();
@@ -231,8 +291,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button Connect_Button;
-        private System.Windows.Forms.Button StartServer_Button;
+        private System.Windows.Forms.Button BasicTCPConnect_Button;
+        private System.Windows.Forms.Button BasicTCPStartServer_Button;
         private System.Windows.Forms.Button StartInstance_Button;
         private System.Windows.Forms.TabControl SystemSelection_TabControl;
         private System.Windows.Forms.TabPage BasicConnect_TabPage;
@@ -240,9 +300,14 @@
         private System.Windows.Forms.SplitContainer BottomHorizontal_SplitContainer;
         private System.Windows.Forms.SplitContainer Vertical_SplitContainer;
         private System.Windows.Forms.RichTextBox Console_TextBox;
-        private System.Windows.Forms.TextBox IPAddress_TextBox;
+        private System.Windows.Forms.TextBox BasicTCPIPAddress_TextBox;
         private System.Windows.Forms.Button ShowIpInfo_Button;
         private System.Windows.Forms.Label IPField_Label;
+        private System.Windows.Forms.TabPage BasicUDP_TabPage;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox BasicUDPIP_Textbox;
+        private System.Windows.Forms.Button BasicUDPConnect_Button;
+        private System.Windows.Forms.Button BasicUDPStartListening_Button;
     }
 }
 

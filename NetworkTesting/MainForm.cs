@@ -16,22 +16,24 @@ namespace NetworkTesting
 {
     public partial class MainForm : Form
     {
-        private BasicConnectionControl basicConnectionControl;
+        private BasicTCPConnectionControl basicConnectionControl;
+        private BasicUDPConnectionControl basicUDPConnectionControl;
         private OutputControl outputControl;
 
         public MainForm()
         {
             InitializeComponent();
             outputControl = new OutputControl(Console_TextBox);
-            basicConnectionControl = new BasicConnectionControl(outputControl);
+            basicConnectionControl = new BasicTCPConnectionControl(outputControl);
+            basicUDPConnectionControl = new BasicUDPConnectionControl(outputControl);
         }
 
-        private void Connect_Button_Click(object sender, EventArgs e)
+        private void BasicTCPConnect_Button_Click(object sender, EventArgs e)
         {
             basicConnectionControl.ConnectAsClient();
         }
 
-        private void StartServer_Button_Click(object sender, EventArgs e)
+        private void BasicTCPStartServer_Button_Click(object sender, EventArgs e)
         {
             basicConnectionControl.StartServer();
         }
@@ -43,7 +45,7 @@ namespace NetworkTesting
 
         private void IPAddress_TextBox_TextChanged(object sender, EventArgs e)
         {
-            basicConnectionControl.targetIpAddr = IPAddress_TextBox.Text;
+            basicConnectionControl.targetIpAddr = BasicTCPIPAddress_TextBox.Text;
         }
 
         private void ShowIpInfo_Button_Click(object sender, EventArgs e)
@@ -59,6 +61,21 @@ namespace NetworkTesting
                     outputControl.WriteToConsole(address.Address.ToString() + " (" + network.Name + ")");
                 }
             }  
+        }
+
+        private void BasicUDPIP_Textbox_TextChanged(object sender, EventArgs e)
+        {
+            basicUDPConnectionControl.targetIpAddr = BasicUDPIP_Textbox.Text;
+        }
+
+        private void BasicUDPStartListening_Button_Click(object sender, EventArgs e)
+        {
+            basicUDPConnectionControl.StartServer();
+        }
+
+        private void BasicUDPConnect_Button_Click(object sender, EventArgs e)
+        {
+            basicUDPConnectionControl.ConnectAsClient();
         }
     }
 }
