@@ -33,10 +33,12 @@
             this.StartInstance_Button = new System.Windows.Forms.Button();
             this.SystemSelection_TabControl = new System.Windows.Forms.TabControl();
             this.BasicConnect_TabPage = new System.Windows.Forms.TabPage();
+            this.IPAddress_TextBox = new System.Windows.Forms.TextBox();
             this.NATHolePunch_TabPage = new System.Windows.Forms.TabPage();
             this.BottomHorizontal_SplitContainer = new System.Windows.Forms.SplitContainer();
             this.Vertical_SplitContainer = new System.Windows.Forms.SplitContainer();
             this.Console_TextBox = new System.Windows.Forms.RichTextBox();
+            this.ShowIpInfo_Button = new System.Windows.Forms.Button();
             this.SystemSelection_TabControl.SuspendLayout();
             this.BasicConnect_TabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BottomHorizontal_SplitContainer)).BeginInit();
@@ -95,6 +97,7 @@
             // BasicConnect_TabPage
             // 
             this.BasicConnect_TabPage.BackColor = System.Drawing.Color.White;
+            this.BasicConnect_TabPage.Controls.Add(this.IPAddress_TextBox);
             this.BasicConnect_TabPage.Controls.Add(this.Connect_Button);
             this.BasicConnect_TabPage.Controls.Add(this.StartServer_Button);
             this.BasicConnect_TabPage.Location = new System.Drawing.Point(4, 29);
@@ -104,12 +107,21 @@
             this.BasicConnect_TabPage.TabIndex = 0;
             this.BasicConnect_TabPage.Text = "Basic Connect";
             // 
+            // IPAddress_TextBox
+            // 
+            this.IPAddress_TextBox.Location = new System.Drawing.Point(392, 6);
+            this.IPAddress_TextBox.Name = "IPAddress_TextBox";
+            this.IPAddress_TextBox.Size = new System.Drawing.Size(265, 26);
+            this.IPAddress_TextBox.TabIndex = 2;
+            this.IPAddress_TextBox.Text = "IP Address...";
+            this.IPAddress_TextBox.TextChanged += new System.EventHandler(this.IPAddress_TextBox_TextChanged);
+            // 
             // NATHolePunch_TabPage
             // 
             this.NATHolePunch_TabPage.Location = new System.Drawing.Point(4, 29);
             this.NATHolePunch_TabPage.Name = "NATHolePunch_TabPage";
             this.NATHolePunch_TabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.NATHolePunch_TabPage.Size = new System.Drawing.Size(1006, 305);
+            this.NATHolePunch_TabPage.Size = new System.Drawing.Size(663, 154);
             this.NATHolePunch_TabPage.TabIndex = 1;
             this.NATHolePunch_TabPage.Text = "NatHolePunch";
             this.NATHolePunch_TabPage.UseVisualStyleBackColor = true;
@@ -129,6 +141,7 @@
             // BottomHorizontal_SplitContainer.Panel2
             // 
             this.BottomHorizontal_SplitContainer.Panel2.BackColor = System.Drawing.Color.Lavender;
+            this.BottomHorizontal_SplitContainer.Panel2.Controls.Add(this.ShowIpInfo_Button);
             this.BottomHorizontal_SplitContainer.Panel2.Controls.Add(this.StartInstance_Button);
             this.BottomHorizontal_SplitContainer.Panel2.Padding = new System.Windows.Forms.Padding(10);
             this.BottomHorizontal_SplitContainer.Size = new System.Drawing.Size(873, 207);
@@ -170,6 +183,18 @@
             this.Console_TextBox.TabIndex = 2;
             this.Console_TextBox.Text = "Test\n";
             // 
+            // ShowIpInfo_Button
+            // 
+            this.ShowIpInfo_Button.AutoSize = true;
+            this.ShowIpInfo_Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ShowIpInfo_Button.Location = new System.Drawing.Point(9, 46);
+            this.ShowIpInfo_Button.Name = "ShowIpInfo_Button";
+            this.ShowIpInfo_Button.Size = new System.Drawing.Size(110, 30);
+            this.ShowIpInfo_Button.TabIndex = 4;
+            this.ShowIpInfo_Button.Text = "Show IP Info";
+            this.ShowIpInfo_Button.UseVisualStyleBackColor = true;
+            this.ShowIpInfo_Button.Click += new System.EventHandler(this.ShowIpInfo_Button_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -180,6 +205,7 @@
             this.Text = "Form1";
             this.SystemSelection_TabControl.ResumeLayout(false);
             this.BasicConnect_TabPage.ResumeLayout(false);
+            this.BasicConnect_TabPage.PerformLayout();
             this.BottomHorizontal_SplitContainer.Panel1.ResumeLayout(false);
             this.BottomHorizontal_SplitContainer.Panel2.ResumeLayout(false);
             this.BottomHorizontal_SplitContainer.Panel2.PerformLayout();
@@ -204,6 +230,8 @@
         private System.Windows.Forms.SplitContainer BottomHorizontal_SplitContainer;
         private System.Windows.Forms.SplitContainer Vertical_SplitContainer;
         private System.Windows.Forms.RichTextBox Console_TextBox;
+        private System.Windows.Forms.TextBox IPAddress_TextBox;
+        private System.Windows.Forms.Button ShowIpInfo_Button;
     }
 }
 
