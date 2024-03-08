@@ -30,6 +30,7 @@ namespace NetworkTesting
 
         private void BasicTCPConnect_Button_Click(object sender, EventArgs e)
         {
+            basicConnectionControl.targetIpAddr = BasicTCPIPAddress_TextBox.Text.Trim();
             basicConnectionControl.ConnectAsClient();
         }
 
@@ -43,7 +44,7 @@ namespace NetworkTesting
             System.Diagnostics.Process.Start(Application.ExecutablePath);
         }
 
-        private void IPAddress_TextBox_TextChanged(object sender, EventArgs e)
+        private void BasicTCPIPAddress_TextBox_TextChanged(object sender, EventArgs e)
         {
             basicConnectionControl.targetIpAddr = BasicTCPIPAddress_TextBox.Text.Trim();
         }
@@ -76,6 +77,11 @@ namespace NetworkTesting
         private void BasicUDPConnect_Button_Click(object sender, EventArgs e)
         {
             basicUDPConnectionControl.ConnectAsClient();
+        }
+
+        private void BasicTCPMessage_TextBox_TextChanged(object sender, EventArgs e)
+        {
+            basicConnectionControl.ClientMessage = BasicTCPMessage_TextBox.Text;
         }
     }
 }

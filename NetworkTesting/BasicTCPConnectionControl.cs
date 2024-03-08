@@ -31,6 +31,7 @@ namespace NetworkTesting
         }
 
         public State state { get; set; }
+        public string ClientMessage { get; internal set; }
 
         public BasicTCPConnectionControl(OutputControl outputControl)
         {        
@@ -65,7 +66,7 @@ namespace NetworkTesting
 
                 IPEndPoint localEndPoint = new IPEndPoint(ipAddr, Port);
 
-                progress.Report($"Trying to connect to -> \n{ipAddr}\non port {localEndPoint.Port}");
+                progress.Report($"Trying to connect to -> \n{ipAddr}:{localEndPoint.Port}");
 
                 Socket sender = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
@@ -75,7 +76,7 @@ namespace NetworkTesting
 
                     progress.Report($"Socket connected to -> {sender.RemoteEndPoint.ToString()}");
 
-                    string message = "Test client says hi!";
+                    string message = ClientMessage;
                     byte[] messageSent = Encoding.ASCII.GetBytes(message + TerminationString);
 
                     int byteSent = sender.Send(messageSent);
@@ -143,7 +144,7 @@ namespace NetworkTesting
             try
             {
 
-                progress.Report($"Binding to ip {NetworkUtils.GetWifiIPv4().Address} on port {localEndPoint.Port}");
+                progress.Report($"Binding to \n{NetworkUtils.GetWifiIPv4().Address}:{localEndPoint.Port}");
 
 
                 listener.Bind(localEndPoint);
@@ -159,7 +160,8 @@ namespace NetworkTesting
                     // Suspend while waiting for incoming connection
                     Socket clientSocket = listener.Accept();
 
-                    progress.Report("Connection received ... ");
+                    var clientEndPoint = (IPEndPoint)clientSocket.RemoteEndPoint;
+                    progress.Report($"Connection received from \n{clientEndPoint.Address}:{clientEndPoint.Port} ");
 
                     // Data buffer
                     byte[] bytes = new Byte[1024];
