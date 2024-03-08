@@ -123,7 +123,7 @@ namespace NetworkTesting
         }
         private void ExecuteServer(IProgress<string> progress)
         {
-            progress.Report("Starting Server");
+            progress.Report("Starting Listening");
 
             // Use IPv6Any to listen on all network interfaces
             // https://stackoverflow.com/questions/1285953/c-sharp-server-that-supports-ipv6-and-ipv4-on-the-same-port
