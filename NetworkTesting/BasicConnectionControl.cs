@@ -55,13 +55,7 @@ namespace NetworkTesting
             progress.Report("Starting Client");
             try
             {
-
-                // Establish the remote endpoint 
-                // for the socket. This example 
-                // uses port 11111 on the local 
-                // computer.
-                IPAddress ipAddr = NetworkUtils.GetLoopbbackAddress().Address;
-
+                IPAddress ipAddr = NetworkUtils.GetHostAssociatedAddress();
 
                 if (targetIpAddr != null && targetIpAddr != String.Empty)
                 {
@@ -72,25 +66,15 @@ namespace NetworkTesting
 
                 progress.Report($"Trying to connect to -> \n{ipAddr}\non port {localEndPoint.Port}");
 
-                // Creation TCP/IP Socket using 
-                // Socket Class Constructor
-                Socket sender = new Socket(ipAddr.AddressFamily,
-                           SocketType.Stream, ProtocolType.Tcp);
+                Socket sender = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
                 try
                 {
-
-                    // Connect Socket to the remote 
-                    // endpoint using method Connect()
                     sender.Connect(localEndPoint);
 
-                    // We print EndPoint information 
-                    // that we are connected
                     progress.Report($"Socket connected to -> {sender.RemoteEndPoint.ToString()}");
 
                     string message = "Test client says hi!";
-                    // Creation of message that
-                    // we will send to Server
                     byte[] messageSent = Encoding.ASCII.GetBytes(message + TerminationString);
 
                     int byteSent = sender.Send(messageSent);
@@ -102,24 +86,15 @@ namespace NetworkTesting
 
                     progress.Report($"Waiting for response...");
 
-
-                    // We receive the message using 
-                    // the method Receive(). This 
-                    // method returns number of bytes
-                    // received, that we'll use to 
-                    // convert them to string
+                    // Receive data from the server
                     int byteRecv = sender.Receive(messageReceived);
-                    progress.Report(
-                        $"Message from Server -> {Encoding.ASCII.GetString(messageReceived, 0, byteRecv)}");
+                    string parsedResponse = Encoding.ASCII.GetString(messageReceived, 0, byteRecv);
+                    progress.Report($"Message from Server -> {parsedResponse}");
 
-
-                    // Close Socket using 
-                    // the method Close()
                     sender.Shutdown(SocketShutdown.Both);
                     sender.Close();
                 }
 
-                // Manage of Socket's Exceptions
                 catch (ArgumentNullException ane)
                 {
 
@@ -154,37 +129,23 @@ namespace NetworkTesting
         {
             progress.Report("Starting Server");
 
-            // Establish the local endpoint 
-            // for the socket.
-            IPAddress ipAddr = NetworkUtils.GetHostAssociatedAddress();
+            // Use IPv6Any to listen on all network interfaces
+            // https://stackoverflow.com/questions/1285953/c-sharp-server-that-supports-ipv6-and-ipv4-on-the-same-port
 
+            IPAddress ipAddr = IPAddress.IPv6Any;
             IPEndPoint localEndPoint = new IPEndPoint(ipAddr, Port);
 
-
-            // Creation TCP/IP Socket using 
-            // Socket Class Constructor
-            Socket listener = new Socket(ipAddr.AddressFamily,
-                         SocketType.Stream, ProtocolType.Tcp);
+            Socket listener = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
             // Allow both ipv4 and ipv6 connections
             listener.SetSocketOption(SocketOptionLevel.IPv6, SocketOptionName.IPv6Only, false);
-
-            progress.Report($"Binding to ip \n{ipAddr}\non port {localEndPoint.Port}");
-
-
             try
             {
+                progress.Report($"Binding to ip \n{ipAddr}\non port {localEndPoint.Port}");
 
-                // Using Bind() method we associate a
-                // network address to the Server Socket
-                // All client that will connect to this 
-                // Server Socket must know this network
-                // Address
                 listener.Bind(localEndPoint);
 
-                // Using Listen() method we create 
-                // the Client list that will want
-                // to connect to Server
+                // Non-blocking; set into listening state
                 listener.Listen(10);
 
                 while (true)
@@ -192,10 +153,7 @@ namespace NetworkTesting
 
                     progress.Report("Waiting for connection to send data... ");
 
-                    // Suspend while waiting for
-                    // incoming connection Using 
-                    // Accept() method the server 
-                    // will accept connection of client
+                    // Suspend while waiting for incoming connection
                     Socket clientSocket = listener.Accept();
 
                     progress.Report("Connection received ... ");
@@ -218,6 +176,7 @@ namespace NetworkTesting
                     }
 
                     progress.Report($"Text received -> {data} ");
+
                     byte[] message = Encoding.ASCII.GetBytes("The server sees you :O");
 
                     // Send a message to Client 
