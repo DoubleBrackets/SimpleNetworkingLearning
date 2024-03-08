@@ -91,7 +91,6 @@ namespace NetworkTesting
                     sender.Shutdown(SocketShutdown.Both);
                     sender.Close();
                 }
-
                 catch (ArgumentNullException ane)
                 {
 
@@ -138,7 +137,7 @@ namespace NetworkTesting
             listener.SetSocketOption(SocketOptionLevel.IPv6, SocketOptionName.IPv6Only, false);
             try
             {
-                progress.Report($"Binding to ip \n{ipAddr}\non port {localEndPoint.Port}");
+                progress.Report($"Binding to ip \n{NetworkUtils.GetWifiIPv4().Address}\non port {localEndPoint.Port}");
 
                 listener.Bind(localEndPoint);
 

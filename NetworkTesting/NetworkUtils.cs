@@ -42,6 +42,7 @@ namespace NetworkTesting
         {
             return NetworkUtils.GetNetworkInterfaces()
                 .Where(network => network.NetworkInterfaceType == System.Net.NetworkInformation.NetworkInterfaceType.Wireless80211)
+                .Where(network => network.Name == "Wi-Fi")
                 .Select(network => network.GetIPProperties().UnicastAddresses)
                 .SelectMany(addr => addr)
                 .Where(addr => addr.Address.AddressFamily == AddressFamily.InterNetwork)
@@ -68,6 +69,20 @@ namespace NetworkTesting
             }
             IPAddress ipAddr = ipHost.AddressList[0];
             return ipAddr;
+        }
+
+        internal static IEnumerable<IPAddressInformation> GetWifiAddresses()
+        {
+            return NetworkUtils.GetNetworkInterfaces()
+                .Where(network => network.NetworkInterfaceType == System.Net.NetworkInformation.NetworkInterfaceType.Wireless80211)
+                .Select(network => network.GetIPProperties().UnicastAddresses)
+                .SelectMany(addr => addr)
+                .Where(addr => {
+                    bool isLoopback = IPAddress.IsLoopback(addr.Address);
+                    bool isIpv4 = addr.Address.AddressFamily == AddressFamily.InterNetwork;
+                    bool isIpv6 = addr.Address.AddressFamily == AddressFamily.InterNetworkV6;
+                    return !isLoopback && (isIpv4 || isIpv6);
+                    });
         }
     }
 }

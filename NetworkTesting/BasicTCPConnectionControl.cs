@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Net.NetworkInformation;
 
 namespace NetworkTesting
 {
@@ -141,7 +142,9 @@ namespace NetworkTesting
             listener.SetSocketOption(SocketOptionLevel.IPv6, SocketOptionName.IPv6Only, false);
             try
             {
-                progress.Report($"Binding to ip \n{ipAddr}\non port {localEndPoint.Port}");
+
+                progress.Report($"Binding to ip {NetworkUtils.GetWifiIPv4().Address} on port {localEndPoint.Port}");
+
 
                 listener.Bind(localEndPoint);
 

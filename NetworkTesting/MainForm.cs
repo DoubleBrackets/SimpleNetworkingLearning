@@ -45,7 +45,7 @@ namespace NetworkTesting
 
         private void IPAddress_TextBox_TextChanged(object sender, EventArgs e)
         {
-            basicConnectionControl.targetIpAddr = BasicTCPIPAddress_TextBox.Text;
+            basicConnectionControl.targetIpAddr = BasicTCPIPAddress_TextBox.Text.Trim();
         }
 
         private void ShowIpInfo_Button_Click(object sender, EventArgs e)
@@ -65,7 +65,7 @@ namespace NetworkTesting
 
         private void BasicUDPIP_Textbox_TextChanged(object sender, EventArgs e)
         {
-            basicUDPConnectionControl.targetIpAddr = BasicUDPIP_Textbox.Text;
+            basicUDPConnectionControl.targetIpAddr = BasicUDPIP_Textbox.Text.Trim();
         }
 
         private void BasicUDPStartListening_Button_Click(object sender, EventArgs e)
