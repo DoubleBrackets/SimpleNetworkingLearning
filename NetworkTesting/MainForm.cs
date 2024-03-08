@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,12 +13,14 @@ namespace NetworkTesting
 {
     public partial class MainForm : Form
     {
-        private MainFormControl control;
+        private BasicConnectionControl control;
+        private OutputControl outputControl;
 
         public MainForm()
         {
             InitializeComponent();
-            control = new MainFormControl(this, Console_TextBox);
+            outputControl = new OutputControl(Console_TextBox);
+            control = new BasicConnectionControl(outputControl);
         }
 
         private void Connect_Button_Click(object sender, EventArgs e)
@@ -25,9 +28,14 @@ namespace NetworkTesting
             control.ExecuteClient();
         }
 
-        private async void StartServer_Button_Click(object sender, EventArgs e)
+        private void StartServer_Button_Click(object sender, EventArgs e)
         {
-            await Task.Run(control.ExecuteServer);
+            control.StartServer();
+        }
+
+        private void StartInstance_Button_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Application.ExecutablePath);
         }
     }
 }

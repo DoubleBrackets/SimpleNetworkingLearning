@@ -8,3 +8,13 @@ C:\Users\arthu\Software Dev\NetworkTesting\obj\Debug\NetworkTesting.csproj.Gener
 C:\Users\arthu\Software Dev\NetworkTesting\obj\Debug\NetworkTesting.csproj.CoreCompileInputs.cache
 C:\Users\arthu\Software Dev\NetworkTesting\obj\Debug\NetworkTesting.exe
 C:\Users\arthu\Software Dev\NetworkTesting\obj\Debug\NetworkTesting.pdb
+C:\Users\arthu\Software Dev\SimpleNetworkingLearning\NetworkTesting\bin\Debug\NetworkTesting.exe.config
+C:\Users\arthu\Software Dev\SimpleNetworkingLearning\NetworkTesting\bin\Debug\NetworkTesting.exe
+C:\Users\arthu\Software Dev\SimpleNetworkingLearning\NetworkTesting\bin\Debug\NetworkTesting.pdb
+C:\Users\arthu\Software Dev\SimpleNetworkingLearning\NetworkTesting\obj\Debug\NetworkTesting.csproj.AssemblyReference.cache
+C:\Users\arthu\Software Dev\SimpleNetworkingLearning\NetworkTesting\obj\Debug\NetworkTesting.MainForm.resources
+C:\Users\arthu\Software Dev\SimpleNetworkingLearning\NetworkTesting\obj\Debug\NetworkTesting.Properties.Resources.resources
+C:\Users\arthu\Software Dev\SimpleNetworkingLearning\NetworkTesting\obj\Debug\NetworkTesting.csproj.GenerateResource.cache
+C:\Users\arthu\Software Dev\SimpleNetworkingLearning\NetworkTesting\obj\Debug\NetworkTesting.csproj.CoreCompileInputs.cache
+C:\Users\arthu\Software Dev\SimpleNetworkingLearning\NetworkTesting\obj\Debug\NetworkTesting.exe
+C:\Users\arthu\Software Dev\SimpleNetworkingLearning\NetworkTesting\obj\Debug\NetworkTesting.pdb

@@ -9,31 +9,18 @@ using System.Windows.Forms;
 
 namespace NetworkTesting
 {
-    internal class MainFormControl
+    internal class BasicConnectionControl
     {
-        private MainForm form;
-        RichTextBox console;
-
-        public MainFormControl(MainForm form, RichTextBox console)
+        private OutputControl outputControl;
+        public BasicConnectionControl(OutputControl outputControl)
         {
-            this.form = form;
-            this.console = console;
-            var x = console.Handle;
-
-            WriteToConsole("Started :D");
-        }
-
-        public void WriteToConsole(string message)
-        {
-
-            console.Invoke((MethodInvoker) delegate {
-                console.AppendText(message + "\n");
-            });
+          
+            this.outputControl = outputControl;
         }
 
         public void ExecuteClient()
         {
-            WriteToConsole("Starting Client");
+            outputControl.WriteToConsole("Starting Client");
             try
             {
 
@@ -59,7 +46,7 @@ namespace NetworkTesting
 
                     // We print EndPoint information 
                     // that we are connected
-                    WriteToConsole($"Socket connected to -> {sender.RemoteEndPoint.ToString()}");
+                    outputControl.WriteToConsole($"Socket connected to -> {sender.RemoteEndPoint.ToString()}");
 
                     // Creation of message that
                     // we will send to Server
@@ -75,7 +62,7 @@ namespace NetworkTesting
                     // received, that we'll use to 
                     // convert them to string
                     int byteRecv = sender.Receive(messageReceived);
-                    WriteToConsole(
+                    outputControl.WriteToConsole(
                         $"Message from Server -> {Encoding.ASCII.GetString(messageReceived,0, byteRecv)}");
 
 
@@ -112,9 +99,15 @@ namespace NetworkTesting
             }
         }
 
-        public async Task<int> ExecuteServer()
+        public async void StartServer()
         {
-            WriteToConsole("Starting Server");
+            var progress = new Progress<string>(s => outputControl.WriteToConsole(s));
+            await Task.Run(() => ExecuteServer(progress));
+        }
+        private async Task<int> ExecuteServer(IProgress<string> progress)
+        {
+            progress.Report("Starting Server");
+
             // Establish the local endpoint 
             // for the socket. Dns.GetHostName
             // returns the name of the host 
@@ -146,7 +139,7 @@ namespace NetworkTesting
                 while (true)
                 {
 
-                    WriteToConsole("Waiting connection ... ");
+                    progress.Report("Waiting connection ... ");
 
                     // Suspend while waiting for
                     // incoming connection Using 
@@ -170,8 +163,8 @@ namespace NetworkTesting
                             break;
                     }
 
-                    WriteToConsole($"Text received -> {data} ");
-                    byte[] message = Encoding.ASCII.GetBytes("Test Server");
+                    progress.Report($"Text received -> {data} ");
+                    byte[] message = Encoding.ASCII.GetBytes("The server sees you :O");
 
                     // Send a message to Client 
                     // using Send() method
