@@ -292,7 +292,7 @@
             this.ClientSize = new System.Drawing.Size(893, 763);
             this.Controls.Add(this.Vertical_SplitContainer);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "DoubleBracket\'s Networking Fun";
             this.SystemSelection_TabControl.ResumeLayout(false);
             this.BasicConnect_TabPage.ResumeLayout(false);
             this.BasicConnect_TabPage.PerformLayout();
