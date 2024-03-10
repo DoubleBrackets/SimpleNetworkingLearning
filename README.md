@@ -1,2 +1,2 @@
 # SimpleNetworkingLearning
-Winforms app for basic networking
+Some network tests for learning purposes in .net
